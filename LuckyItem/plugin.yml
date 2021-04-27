@@ -1,0 +1,17 @@
+name: LuckyItem
+version: "3.3"
+main: com.nokhoon.luckyitem.PluginMain
+description: Feeling lucky?
+api-version: 1.16
+author: "0x0804ac"
+
+commands:
+  crate:
+    description: What's inside the crate? Open it and find out!
+    usage: /crate (name or ID) [amount]
+  rarity:
+    description: Can I get this item from that crate? If yes, how often?
+    usage: /rarity (crate name or ID) (item)
+  supply:
+    description: Interval for giving every online player a random crate
+    usage: /supply (seconds)
