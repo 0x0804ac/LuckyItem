@@ -1,11 +1,9 @@
 package com.nokhoon.luckyitem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
@@ -26,13 +24,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
-public class ItemPool extends Hashtable<Material, Rarity> {
+public class ItemPool extends HashMap<Material, Rarity> {
 	private static final long serialVersionUID = 0x0804ac0804acL;
 	
 	private Random rng;
 	
 	public ItemPool(long seed) {
-		super(10, 0.5F);
+		super(12, 0.5F);
 		rng = new Random(seed);
 	}
 	
@@ -44,10 +42,10 @@ public class ItemPool extends Hashtable<Material, Rarity> {
 	
 	public ItemStack getRandomItem() {
 		ItemStack result = null;
-		Set<Map.Entry<Material, Rarity>> entries = entrySet();
+		var entries = entrySet();
 		int randomNumber = rng.nextInt(getTotalTier());
 		int check = 0;
-		for(Map.Entry<Material, Rarity> entry : entries) {
+		for(var entry : entries) {
 			Material key = entry.getKey();
 			Rarity value = entry.getValue();
 			check += value.getWeight();
@@ -73,17 +71,18 @@ public class ItemPool extends Hashtable<Material, Rarity> {
 				for(Enchantment ench : Enchantment.values()) if(ench.canEnchantItem(result)) candidates.add(ench);
 				int size = candidates.size();
 				if(size > 0) {
-					HashMap<Enchantment, Integer> applied = new HashMap<>(size * 2);
-					boolean conflicts = false;
+					var applied = new HashMap<Enchantment, Integer>(size * 2);
+					boolean conflict = false;
+					Collections.shuffle(candidates, rng);
 					for(int i = rng.nextInt(size * 2); i < size; i++) {
 						Enchantment ench = candidates.get(rng.nextInt(size));
 						for(Enchantment e : applied.keySet()) {
 							if(e.conflictsWith(ench)) {
-								conflicts = true;
+								conflict = true;
 								break;
 							}
 						}
-						if(!conflicts && (!ench.isTreasure() || rng.nextInt(10) == 0)) applied.put(ench, 1 + rng.nextInt(ench.getMaxLevel()));
+						if(!conflict && (!ench.isTreasure() || rng.nextInt(10) == 0)) applied.put(ench, 1 + rng.nextInt(ench.getMaxLevel()));
 					}
 					result.addEnchantments(applied);
 				}
