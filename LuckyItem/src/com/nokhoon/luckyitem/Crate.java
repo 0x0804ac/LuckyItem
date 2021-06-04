@@ -25,9 +25,9 @@ public enum Crate {
 	
 	public static final int TYPES_OF_CRATES = 21;
 	
-	private String strID;
-	private String displayName;
-	private int numID;
+	private final String strID;
+	private final String displayName;
+	private final int numID;
 	
 	private Crate(String id, String name, int number) {
 		strID = id;
@@ -35,15 +35,15 @@ public enum Crate {
 		numID = number;
 	}
 	
-	public String getName() {
+	public final String getName() {
 		return strID;
 	}
 	
-	public String getDisplayName() {
+	public final String getDisplayName() {
 		return displayName;
 	}
 	
-	public int getID() {
+	public final int getID() {
 		return numID;
 	}
 	

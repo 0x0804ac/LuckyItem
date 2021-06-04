@@ -11,14 +11,14 @@ public enum Rarity {
 	EPIC(3, Component.text("[영웅] ", NamedTextColor.DARK_PURPLE)),
 	LEGENDARY(1, Component.text("[전설] ", NamedTextColor.GOLD));
 	
-	private int weight;
-	private TextComponent prefix;
+	private final int weight;
+	private final TextComponent prefix;
 	
 	private Rarity(int chance, TextComponent text) {
 		weight = chance;
 		prefix = text;
 	}
 	
-	public int getWeight() { return weight; }
-	public TextComponent getPrefix() { return prefix; }
+	public final int getWeight() { return weight; }
+	public final TextComponent getPrefix() { return prefix; }
 }
