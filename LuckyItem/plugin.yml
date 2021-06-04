@@ -1,5 +1,5 @@
 name: LuckyItem
-version: "3.3"
+version: "3.4"
 main: com.nokhoon.luckyitem.PluginMain
 description: Feeling lucky?
 api-version: 1.16
