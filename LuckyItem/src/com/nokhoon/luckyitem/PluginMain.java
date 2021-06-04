@@ -2,7 +2,6 @@ package com.nokhoon.luckyitem;
 
 import java.util.function.Predicate;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -39,7 +38,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		startSupplyTask(getConfig().getInt("supply"));
-		Bukkit.getPluginManager().registerEvents(this, this);
+		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
 	@Override
@@ -176,7 +175,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 		table.updateSeed();
 		ItemStack result = table.getRandomItem();
 		Rarity rarity = table.get(result.getType());
-		Bukkit.getScheduler().runTask(this, new Runnable() {
+		getServer().getScheduler().runTask(this, new Runnable() {
 			public void run() {
 				Component name = selectedItem.getItemMeta().displayName();
 				selectedItem.subtract();
@@ -212,10 +211,10 @@ public class PluginMain extends JavaPlugin implements Listener {
 	
 	private void startSupplyTask(int seconds) {
 		if(supplyTask != null) supplyTask.cancel();
-		if(seconds > 0) supplyTask = Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
+		if(seconds > 0) supplyTask = getServer().getScheduler().runTaskTimer(this, new Runnable() {
 			public void run() {
 				int count = 0;
-				for(Player player : Bukkit.getOnlinePlayers()) {
+				for(Player player : getServer().getOnlinePlayers()) {
 					if(player.getGameMode() == GameMode.SPECTATOR) continue;
 					PlayerInventory inventory = player.getInventory();
 					ItemStack item = CrateChestData.getRandomChest(System.currentTimeMillis() ^ (long) player.getName().hashCode());
