@@ -1087,7 +1087,6 @@ public class CrateItemData {
 		ptr.put(Material.PHANTOM_MEMBRANE, Rarity.RARE);
 		ptr.put(Material.BREWING_STAND, Rarity.RARE);
 		ptr.put(Material.CAULDRON, Rarity.UNCOMMON);
-		ptr.put(Material.WATER_CAULDRON, Rarity.UNCOMMON);
 		ptr.put(Material.TURTLE_HELMET, Rarity.LEGENDARY);
 		//end of POTION
 		ptr = CRATE_DATA[Crate.PROJECTILE.getID()];
