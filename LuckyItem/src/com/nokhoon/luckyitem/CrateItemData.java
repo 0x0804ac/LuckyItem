@@ -180,6 +180,9 @@ public class CrateItemData {
 		ptr.put(Material.WHITE_GLAZED_TERRACOTTA, Rarity.EPIC);
 		ptr.put(Material.YELLOW_GLAZED_TERRACOTTA, Rarity.EPIC); //end of Terracotta
 		ptr.put(Material.BONE_BLOCK, Rarity.UNCOMMON); //Bone Block
+		ptr.put(Material.RAW_GOLD_BLOCK, Rarity.EPIC);
+		ptr.put(Material.RAW_IRON_BLOCK, Rarity.EPIC);
+		ptr.put(Material.RAW_COPPER_BLOCK, Rarity.RARE);
 		ptr.put(Material.COAL_BLOCK, Rarity.RARE);
 		ptr.put(Material.DIAMOND_BLOCK, Rarity.LEGENDARY);
 		ptr.put(Material.EMERALD_BLOCK, Rarity.EPIC);
@@ -279,7 +282,8 @@ public class CrateItemData {
 		ptr.put(Material.CHISELED_STONE_BRICKS, Rarity.UNCOMMON);
 		ptr.put(Material.CRACKED_STONE_BRICKS, Rarity.UNCOMMON); //end of Stone Bricks
 		ptr.put(Material.DIRT, Rarity.COMMON);
-		ptr.put(Material.COARSE_DIRT, Rarity.COMMON); //end of Dirt
+		ptr.put(Material.COARSE_DIRT, Rarity.COMMON);
+		ptr.put(Material.ROOTED_DIRT, Rarity.UNCOMMON); //end of Dirt
 		ptr.put(Material.COBBLESTONE, Rarity.COMMON);
 		ptr.put(Material.COBBLESTONE_SLAB, Rarity.COMMON);
 		ptr.put(Material.COBBLESTONE_STAIRS, Rarity.COMMON);
@@ -337,7 +341,7 @@ public class CrateItemData {
 		ptr.put(Material.WARPED_WART_BLOCK, Rarity.COMMON); //end of Wart Block
 		ptr.put(Material.NOTE_BLOCK, Rarity.RARE);
 		ptr.put(Material.OBSIDIAN, Rarity.RARE);
-		ptr.put(Material.CRYING_OBSIDIAN, Rarity.EPIC); //end of Obisidan
+		ptr.put(Material.CRYING_OBSIDIAN, Rarity.EPIC); //end of Obsidian
 		ptr.put(Material.PURPUR_BLOCK, Rarity.LEGENDARY);
 		ptr.put(Material.PURPUR_STAIRS, Rarity.LEGENDARY);
 		ptr.put(Material.PURPUR_SLAB, Rarity.LEGENDARY);
@@ -363,7 +367,8 @@ public class CrateItemData {
 		ptr.put(Material.RED_MUSHROOM_BLOCK, Rarity.UNCOMMON);
 		ptr.put(Material.MUSHROOM_STEM, Rarity.UNCOMMON); //end of Mushroom
 		ptr.put(Material.BASALT, Rarity.UNCOMMON);
-		ptr.put(Material.POLISHED_BASALT, Rarity.UNCOMMON); //end of Basalt
+		ptr.put(Material.POLISHED_BASALT, Rarity.UNCOMMON);
+		ptr.put(Material.SMOOTH_BASALT, Rarity.UNCOMMON); //end of Basalt
 		ptr.put(Material.BLACKSTONE, Rarity.UNCOMMON);
 		ptr.put(Material.BLACKSTONE_SLAB, Rarity.UNCOMMON);
 		ptr.put(Material.BLACKSTONE_STAIRS, Rarity.UNCOMMON);
@@ -399,6 +404,65 @@ public class CrateItemData {
 		ptr.put(Material.WARPED_STEM, Rarity.COMMON);
 		ptr.put(Material.STRIPPED_WARPED_HYPHAE, Rarity.UNCOMMON);
 		ptr.put(Material.STRIPPED_WARPED_STEM, Rarity.COMMON); //end of Warped
+		ptr.put(Material.AMETHYST_BLOCK, Rarity.RARE);
+		ptr.put(Material.COPPER_BLOCK, Rarity.UNCOMMON);
+		ptr.put(Material.CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.EXPOSED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.EXPOSED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.EXPOSED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.EXPOSED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.WEATHERED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WEATHERED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WEATHERED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.WEATHERED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.OXIDIZED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.OXIDIZED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.OXIDIZED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.OXIDIZED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_COPPER_BLOCK, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_EXPOSED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_EXPOSED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_EXPOSED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_EXPOSED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_WEATHERED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_WEATHERED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_WEATHERED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_WEATHERED_CUT_COPPER_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_OXIDIZED_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_OXIDIZED_CUT_COPPER, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_OXIDIZED_CUT_COPPER_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.WAXED_OXIDIZED_CUT_COPPER_SLAB, Rarity.UNCOMMON); //end of Copper
+		ptr.put(Material.DEEPSLATE, Rarity.COMMON);
+		ptr.put(Material.COBBLED_DEEPSLATE, Rarity.COMMON);
+		ptr.put(Material.COBBLED_DEEPSLATE_STAIRS, Rarity.COMMON);
+		ptr.put(Material.COBBLED_DEEPSLATE_SLAB, Rarity.COMMON);
+		ptr.put(Material.COBBLED_DEEPSLATE_WALL, Rarity.COMMON);
+		ptr.put(Material.POLISHED_DEEPSLATE, Rarity.COMMON);
+		ptr.put(Material.POLISHED_DEEPSLATE_STAIRS, Rarity.COMMON);
+		ptr.put(Material.POLISHED_DEEPSLATE_SLAB, Rarity.COMMON);
+		ptr.put(Material.POLISHED_DEEPSLATE_WALL, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_BRICKS, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_BRICK_STAIRS, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_BRICK_SLAB, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_BRICK_WALL, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_TILES, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_TILE_STAIRS, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_TILE_SLAB, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE_TILE_WALL, Rarity.COMMON);
+		ptr.put(Material.CHISELED_DEEPSLATE, Rarity.COMMON);
+		ptr.put(Material.CRACKED_DEEPSLATE_BRICKS, Rarity.COMMON);
+		ptr.put(Material.CRACKED_DEEPSLATE_TILES, Rarity.COMMON);
+		ptr.put(Material.MOSS_BLOCK, Rarity.RARE);
+		ptr.put(Material.MOSS_CARPET, Rarity.RARE);
+		ptr.put(Material.TINTED_GLASS, Rarity.RARE);
+		ptr.put(Material.TUFF, Rarity.UNCOMMON);
+		ptr.put(Material.CALCITE, Rarity.RARE);
+		ptr.put(Material.DRIPSTONE_BLOCK, Rarity.UNCOMMON);
 		//end of BLOCK
 		ptr = CRATE_DATA[Crate.BOOTS.getID()];
 		ptr.put(Material.LEATHER_BOOTS, Rarity.COMMON);
@@ -483,6 +547,7 @@ public class CrateItemData {
 		ptr.put(Material.CAKE, Rarity.UNCOMMON);
 		ptr.put(Material.COOKIE, Rarity.UNCOMMON);
 		ptr.put(Material.SWEET_BERRIES, Rarity.COMMON);
+		ptr.put(Material.GLOW_BERRIES, Rarity.UNCOMMON); //end of Berries
 		ptr.put(Material.WHEAT, Rarity.COMMON); //
 		ptr.put(Material.CARROT, Rarity.COMMON);
 		ptr.put(Material.GOLDEN_CARROT, Rarity.RARE); //end of Carrot
@@ -572,29 +637,46 @@ public class CrateItemData {
 		ptr.put(Material.WHITE_WOOL, Rarity.COMMON);
 		ptr.put(Material.YELLOW_WOOL, Rarity.UNCOMMON); //end of Wool
 		ptr.put(Material.COAL_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_COAL_ORE, Rarity.RARE);
 		ptr.put(Material.COAL, Rarity.UNCOMMON);
 		ptr.put(Material.CHARCOAL, Rarity.UNCOMMON);
 		ptr.put(Material.COAL_BLOCK, Rarity.RARE);
 		ptr.put(Material.DIAMOND_ORE, Rarity.LEGENDARY);
+		ptr.put(Material.DEEPSLATE_DIAMOND_ORE, Rarity.LEGENDARY);
 		ptr.put(Material.DIAMOND, Rarity.EPIC);
 		ptr.put(Material.DIAMOND_BLOCK, Rarity.LEGENDARY);
-		ptr.put(Material.EMERALD_ORE, Rarity.LEGENDARY);
-		ptr.put(Material.EMERALD, Rarity.EPIC);
-		ptr.put(Material.EMERALD_BLOCK, Rarity.LEGENDARY);
+		ptr.put(Material.EMERALD_ORE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE_EMERALD_ORE, Rarity.EPIC);
+		ptr.put(Material.EMERALD, Rarity.RARE);
+		ptr.put(Material.EMERALD_BLOCK, Rarity.EPIC);
 		ptr.put(Material.GOLD_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_GOLD_ORE, Rarity.RARE);
 		ptr.put(Material.NETHER_GOLD_ORE, Rarity.RARE);
 		ptr.put(Material.GILDED_BLACKSTONE, Rarity.RARE);
 		ptr.put(Material.GOLD_NUGGET, Rarity.RARE);
 		ptr.put(Material.GOLD_INGOT, Rarity.RARE);
+		ptr.put(Material.RAW_GOLD, Rarity.EPIC);
 		ptr.put(Material.GOLD_BLOCK, Rarity.EPIC);
+		ptr.put(Material.RAW_GOLD_BLOCK, Rarity.EPIC);
 		ptr.put(Material.IRON_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_IRON_ORE, Rarity.RARE);
 		ptr.put(Material.IRON_NUGGET, Rarity.RARE);
 		ptr.put(Material.IRON_INGOT, Rarity.RARE);
+		ptr.put(Material.RAW_IRON, Rarity.EPIC);
 		ptr.put(Material.IRON_BLOCK, Rarity.EPIC);
+		ptr.put(Material.RAW_IRON_BLOCK, Rarity.EPIC);
+		ptr.put(Material.COPPER_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_COPPER_ORE, Rarity.RARE);
+		ptr.put(Material.COPPER_INGOT, Rarity.RARE);
+		ptr.put(Material.RAW_COPPER, Rarity.EPIC);
+		ptr.put(Material.COPPER_BLOCK, Rarity.EPIC);
+		ptr.put(Material.RAW_COPPER_BLOCK, Rarity.EPIC);
 		ptr.put(Material.LAPIS_ORE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE_LAPIS_ORE, Rarity.EPIC);
 		ptr.put(Material.LAPIS_LAZULI, Rarity.EPIC);
 		ptr.put(Material.LAPIS_BLOCK, Rarity.EPIC);
 		ptr.put(Material.REDSTONE_ORE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE_REDSTONE_ORE, Rarity.EPIC);
 		ptr.put(Material.REDSTONE, Rarity.RARE);
 		ptr.put(Material.REDSTONE_BLOCK, Rarity.EPIC);
 		ptr.put(Material.NETHER_QUARTZ_ORE, Rarity.EPIC);
@@ -605,8 +687,6 @@ public class CrateItemData {
 		ptr.put(Material.NETHERITE_BLOCK, Rarity.LEGENDARY); //end of Mineral
 		ptr.put(Material.CLAY_BALL, Rarity.COMMON);
 		ptr.put(Material.CLAY, Rarity.COMMON); //end of Clay
-		ptr.put(Material.COBBLESTONE, Rarity.COMMON);
-		ptr.put(Material.STONE, Rarity.COMMON); //end of Stone
 		ptr.put(Material.RED_SAND, Rarity.COMMON);
 		ptr.put(Material.SAND, Rarity.COMMON); //end of Sand
 		ptr.put(Material.COBWEB, Rarity.RARE);
@@ -643,9 +723,13 @@ public class CrateItemData {
 		ptr.put(Material.WARPED_STEM, Rarity.COMMON); //end of Log
 		ptr.put(Material.SOUL_SAND, Rarity.UNCOMMON);
 		ptr.put(Material.SOUL_SOIL, Rarity.UNCOMMON); //end of Soul
+		ptr.put(Material.COBBLESTONE, Rarity.COMMON);
+		ptr.put(Material.STONE, Rarity.COMMON);
+		ptr.put(Material.DEEPSLATE, Rarity.UNCOMMON);
 		ptr.put(Material.ANDESITE, Rarity.UNCOMMON);
 		ptr.put(Material.DIORITE, Rarity.UNCOMMON);
-		ptr.put(Material.GRANITE, Rarity.UNCOMMON); //end of -ite
+		ptr.put(Material.GRANITE, Rarity.UNCOMMON); //end of Stone
+		ptr.put(Material.AMETHYST_SHARD, Rarity.RARE);
 		//end of MATERIAL
 		ptr = CRATE_DATA[Crate.NATURE.getID()];
 		ptr.put(Material.APPLE, Rarity.UNCOMMON);
@@ -672,7 +756,8 @@ public class CrateItemData {
 		ptr.put(Material.CARVED_PUMPKIN, Rarity.UNCOMMON); //end of Pumpkin
 		ptr.put(Material.SEAGRASS, Rarity.COMMON);
 		ptr.put(Material.SUGAR_CANE, Rarity.UNCOMMON);
-		ptr.put(Material.SWEET_BERRIES, Rarity.COMMON); //
+		ptr.put(Material.SWEET_BERRIES, Rarity.COMMON);
+		ptr.put(Material.GLOW_BERRIES, Rarity.EPIC); //end of Berries
 		ptr.put(Material.WHEAT_SEEDS, Rarity.COMMON);
 		ptr.put(Material.WHEAT, Rarity.UNCOMMON);
 		ptr.put(Material.HAY_BLOCK, Rarity.UNCOMMON); //end of Wheat
@@ -681,7 +766,9 @@ public class CrateItemData {
 		ptr.put(Material.DARK_OAK_LEAVES, Rarity.COMMON);
 		ptr.put(Material.JUNGLE_LEAVES, Rarity.COMMON);
 		ptr.put(Material.OAK_LEAVES, Rarity.COMMON);
-		ptr.put(Material.SPRUCE_LEAVES, Rarity.COMMON); //end of Leaves
+		ptr.put(Material.SPRUCE_LEAVES, Rarity.COMMON);
+		ptr.put(Material.AZALEA_LEAVES, Rarity.COMMON);
+		ptr.put(Material.FLOWERING_AZALEA_LEAVES, Rarity.COMMON); //end of Leaves
 		ptr.put(Material.ACACIA_LOG, Rarity.COMMON);
 		ptr.put(Material.BIRCH_LOG, Rarity.COMMON);
 		ptr.put(Material.DARK_OAK_LOG, Rarity.COMMON);
@@ -732,20 +819,26 @@ public class CrateItemData {
 		ptr.put(Material.BEE_NEST, Rarity.UNCOMMON);
 		ptr.put(Material.EGG, Rarity.COMMON);
 		ptr.put(Material.BONE_MEAL, Rarity.UNCOMMON);
+		ptr.put(Material.BONE_BLOCK, Rarity.RARE);
 		ptr.put(Material.INK_SAC, Rarity.UNCOMMON);
+		ptr.put(Material.GLOW_INK_SAC, Rarity.RARE); //end of Ink
 		ptr.put(Material.STICK, Rarity.COMMON); //
 		ptr.put(Material.MYCELIUM, Rarity.EPIC);
 		ptr.put(Material.PODZOL, Rarity.RARE);
 		ptr.put(Material.GRASS_BLOCK, Rarity.UNCOMMON); //end of Grass Block
 		ptr.put(Material.DIRT, Rarity.COMMON);
-		ptr.put(Material.COARSE_DIRT, Rarity.COMMON); //end of Dirt
+		ptr.put(Material.COARSE_DIRT, Rarity.COMMON);
+		ptr.put(Material.ROOTED_DIRT, Rarity.EPIC); //end of Dirt
 		ptr.put(Material.SAND, Rarity.COMMON);
 		ptr.put(Material.RED_SAND, Rarity.COMMON); //end of Sand
 		ptr.put(Material.GRAVEL, Rarity.UNCOMMON);
 		ptr.put(Material.STONE, Rarity.COMMON); //
 		ptr.put(Material.ANDESITE, Rarity.UNCOMMON);
 		ptr.put(Material.DIORITE, Rarity.UNCOMMON);
-		ptr.put(Material.GRANITE, Rarity.UNCOMMON); //end of Stone
+		ptr.put(Material.GRANITE, Rarity.UNCOMMON);
+		ptr.put(Material.CALCITE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE, Rarity.UNCOMMON);
+		ptr.put(Material.TUFF, Rarity.UNCOMMON); //end of Stone
 		ptr.put(Material.TERRACOTTA, Rarity.UNCOMMON);
 		ptr.put(Material.RED_TERRACOTTA, Rarity.UNCOMMON);
 		ptr.put(Material.ORANGE_TERRACOTTA, Rarity.UNCOMMON);
@@ -792,14 +885,23 @@ public class CrateItemData {
 		ptr.put(Material.WARPED_FUNGUS, Rarity.UNCOMMON); //end of Mushroom
 		ptr.put(Material.CLAY, Rarity.COMMON); //
 		ptr.put(Material.COAL_ORE, Rarity.UNCOMMON);
+		ptr.put(Material.DEEPSLATE_COAL_ORE, Rarity.UNCOMMON);
 		ptr.put(Material.DIAMOND_ORE, Rarity.LEGENDARY);
+		ptr.put(Material.DEEPSLATE_DIAMOND_ORE, Rarity.LEGENDARY);
 		ptr.put(Material.EMERALD_ORE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE_EMERALD_ORE, Rarity.EPIC);
 		ptr.put(Material.GOLD_ORE, Rarity.EPIC);
+		ptr.put(Material.DEEPSLATE_GOLD_ORE, Rarity.EPIC);
 		ptr.put(Material.IRON_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_IRON_ORE, Rarity.RARE);
 		ptr.put(Material.LAPIS_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_LAPIS_ORE, Rarity.RARE);
 		ptr.put(Material.NETHER_GOLD_ORE, Rarity.EPIC);
 		ptr.put(Material.NETHER_QUARTZ_ORE, Rarity.EPIC);
-		ptr.put(Material.REDSTONE_ORE, Rarity.RARE); //end of Ore
+		ptr.put(Material.REDSTONE_ORE, Rarity.RARE);
+		ptr.put(Material.DEEPSLATE_REDSTONE_ORE, Rarity.RARE);
+		ptr.put(Material.COPPER_ORE, Rarity.UNCOMMON);
+		ptr.put(Material.DEEPSLATE_COPPER_ORE, Rarity.UNCOMMON); //end of Ore
 		ptr.put(Material.COBWEB, Rarity.RARE);
 		ptr.put(Material.END_STONE, Rarity.LEGENDARY);
 		ptr.put(Material.GLOWSTONE, Rarity.RARE);
@@ -807,6 +909,8 @@ public class CrateItemData {
 		ptr.put(Material.KELP, Rarity.COMMON);
 		ptr.put(Material.MAGMA_BLOCK, Rarity.RARE);
 		ptr.put(Material.NETHERRACK, Rarity.UNCOMMON);
+		ptr.put(Material.BASALT, Rarity.UNCOMMON);
+		ptr.put(Material.SMOOTH_BASALT, Rarity.RARE); //end of Basalt
 		ptr.put(Material.OBSIDIAN, Rarity.RARE); //
 		ptr.put(Material.ICE, Rarity.UNCOMMON);
 		ptr.put(Material.PACKED_ICE, Rarity.RARE);
@@ -838,6 +942,21 @@ public class CrateItemData {
 		ptr.put(Material.VINE, Rarity.RARE);
 		ptr.put(Material.TWISTING_VINES, Rarity.UNCOMMON);
 		ptr.put(Material.WEEPING_VINES, Rarity.UNCOMMON); //end of Vines
+		ptr.put(Material.SMALL_AMETHYST_BUD, Rarity.EPIC);
+		ptr.put(Material.MEDIUM_AMETHYST_BUD, Rarity.EPIC);
+		ptr.put(Material.LARGE_AMETHYST_BUD, Rarity.EPIC);
+		ptr.put(Material.AMETHYST_CLUSTER, Rarity.EPIC);
+		ptr.put(Material.AMETHYST_BLOCK, Rarity.EPIC); //end of Amethyst
+		ptr.put(Material.AZALEA, Rarity.RARE);
+		ptr.put(Material.FLOWERING_AZALEA, Rarity.RARE); //end of Azalea
+		ptr.put(Material.SMALL_DRIPLEAF, Rarity.EPIC);
+		ptr.put(Material.BIG_DRIPLEAF, Rarity.EPIC); //end of Dripleaf
+		ptr.put(Material.DRIPSTONE_BLOCK, Rarity.UNCOMMON);
+		ptr.put(Material.POINTED_DRIPSTONE, Rarity.UNCOMMON);
+		ptr.put(Material.GLOW_LICHEN, Rarity.UNCOMMON);
+		ptr.put(Material.HANGING_ROOTS, Rarity.EPIC);
+		ptr.put(Material.MOSS_BLOCK, Rarity.UNCOMMON);
+		ptr.put(Material.MOSS_CARPET, Rarity.UNCOMMON);
 		//end of NATURE
 		ptr = CRATE_DATA[Crate.NETHER.getID()];
 		ptr.put(Material.ANCIENT_DEBRIS, Rarity.EPIC);
@@ -968,6 +1087,7 @@ public class CrateItemData {
 		ptr.put(Material.PHANTOM_MEMBRANE, Rarity.RARE);
 		ptr.put(Material.BREWING_STAND, Rarity.RARE);
 		ptr.put(Material.CAULDRON, Rarity.UNCOMMON);
+		ptr.put(Material.WATER_CAULDRON, Rarity.UNCOMMON);
 		ptr.put(Material.TURTLE_HELMET, Rarity.LEGENDARY);
 		//end of POTION
 		ptr = CRATE_DATA[Crate.PROJECTILE.getID()];
@@ -1115,6 +1235,10 @@ public class CrateItemData {
 		ptr.put(Material.COMPASS, Rarity.RARE);
 		ptr.put(Material.CLOCK, Rarity.RARE);
 		ptr.put(Material.LEAD, Rarity.EPIC);
+		ptr.put(Material.ITEM_FRAME, Rarity.UNCOMMON);
+		ptr.put(Material.GLOW_ITEM_FRAME, Rarity.RARE);
+		ptr.put(Material.SPYGLASS, Rarity.EPIC);
+		ptr.put(Material.LIGHTNING_ROD, Rarity.UNCOMMON);
 		//end of TOOL
 		ptr = CRATE_DATA[Crate.WEAPON.getID()];
 		ptr.put(Material.WOODEN_AXE, Rarity.COMMON);

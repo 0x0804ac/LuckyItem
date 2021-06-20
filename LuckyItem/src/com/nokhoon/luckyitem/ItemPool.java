@@ -163,7 +163,7 @@ public class ItemPool extends HashMap<Material, Rarity> {
 	}
 	
 	public void updateSeed() {
-		rng.setSeed(System.currentTimeMillis() ^ 0x0804ac);
+		rng.setSeed(System.currentTimeMillis() ^ 0x0804acL);
 	}
 	
 	private static PotionData randomPotionData(Random rng) {
