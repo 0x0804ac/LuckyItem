@@ -235,7 +235,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 	
 	private Component itemMessage(Rarity rarity, ItemStack item) {
 		Component prefix = rarity.getPrefix();
-		return prefix.append(Component.translatable(item.getType().getTranslationKey(), prefix.color()).hoverEvent(item));
+		return prefix.append(Component.translatable(item.getType().translationKey(), prefix.color()).hoverEvent(item));
 	}
 	
 	private Component openMessage(Component crate, ItemStack item, Rarity rarity) {
