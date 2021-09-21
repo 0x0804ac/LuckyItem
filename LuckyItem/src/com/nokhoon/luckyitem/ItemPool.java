@@ -26,8 +26,26 @@ import org.bukkit.potion.PotionType;
 
 public class ItemPool extends HashMap<Material, Rarity> {
 	private static final long serialVersionUID = 0x0804ac0804acL;
-	
+	private static final PotionEffect[] SUSPICIOUS_STEW_EFFECTS;
 	private Random rng;
+	
+	static {
+		SUSPICIOUS_STEW_EFFECTS = new PotionEffect[] {
+				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 80, 0), 
+				new PotionEffect(PotionEffectType.BLINDNESS, 160, 0), 
+				new PotionEffect(PotionEffectType.SATURATION, 7, 0), 
+				new PotionEffect(PotionEffectType.JUMP, 120, 0), 
+				new PotionEffect(PotionEffectType.POISON, 240, 0), 
+				new PotionEffect(PotionEffectType.REGENERATION, 160, 0), 
+				new PotionEffect(PotionEffectType.NIGHT_VISION, 100, 0), 
+				new PotionEffect(PotionEffectType.WEAKNESS, 180, 0), 
+				new PotionEffect(PotionEffectType.WITHER, 160, 0), 
+				new PotionEffect(PotionEffectType.JUMP, 160, 0), 
+				new PotionEffect(PotionEffectType.WEAKNESS, 140, 0), 
+				new PotionEffect(PotionEffectType.BLINDNESS, 120, 0), 
+				new PotionEffect(PotionEffectType.POISON, 280, 0)
+		};
+	}
 	
 	public ItemPool(long seed) {
 		super(12, 0.5F);
@@ -127,18 +145,7 @@ public class ItemPool extends HashMap<Material, Rarity> {
 				//수상한 스튜
 				else if(meta instanceof SuspiciousStewMeta) {
 					SuspiciousStewMeta stew = (SuspiciousStewMeta) meta;
-					PotionEffect effect = switch(rng.nextInt(9)) {
-					case 0 -> new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 80, 0);
-					case 1 -> new PotionEffect(PotionEffectType.BLINDNESS, 160, 0);
-					case 2 -> new PotionEffect(PotionEffectType.SATURATION, 7, 0);
-					case 3 -> new PotionEffect(PotionEffectType.JUMP, 120, 0);
-					case 4 -> new PotionEffect(PotionEffectType.POISON, 240, 0);
-					case 5 -> new PotionEffect(PotionEffectType.REGENERATION, 160, 0);
-					case 6 -> new PotionEffect(PotionEffectType.NIGHT_VISION, 100, 0);
-					case 7 -> new PotionEffect(PotionEffectType.WEAKNESS, 180, 0);
-					case 8 -> new PotionEffect(PotionEffectType.WITHER, 160, 0);
-					default -> null;
-					};
+					PotionEffect effect = SUSPICIOUS_STEW_EFFECTS[rng.nextInt(SUSPICIOUS_STEW_EFFECTS.length)];
 					stew.addCustomEffect(effect, true);
 					result.setItemMeta(stew);
 				}
@@ -171,9 +178,9 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		PotionType type = types[rng.nextInt(types.length)];
 		boolean isLong = false;
 		boolean isStrong = false;
-		switch(rng.nextInt(5)) {
+		switch(rng.nextInt(6)) {
 		case 2, 3 -> isStrong = type.isUpgradeable();
-		case 4 -> isLong = type.isExtendable();
+		case 4, 5 -> isLong = type.isExtendable();
 		}
 		PotionData potion = new PotionData(type, isLong, isStrong);
 		return potion;
@@ -190,27 +197,10 @@ public class ItemPool extends HashMap<Material, Rarity> {
 	}
 	
 	private static DyeColor[] randomDyes(Random rng) {
+		DyeColor[] values = DyeColor.values();
 		DyeColor[] dyes = new DyeColor[1 + rng.nextInt(3)];
 		for(int i = 0; i < dyes.length; i++) {
-			dyes[i] = switch(rng.nextInt(16)) {
-			case 0: yield DyeColor.BLACK;
-			case 1: yield DyeColor.BLUE;
-			case 2: yield DyeColor.BROWN;
-			case 3: yield DyeColor.CYAN;
-			case 4: yield DyeColor.GRAY;
-			case 5: yield DyeColor.GREEN;
-			case 6: yield DyeColor.LIGHT_BLUE;
-			case 7: yield DyeColor.LIGHT_GRAY;
-			case 8: yield DyeColor.LIME;
-			case 9: yield DyeColor.MAGENTA;
-			case 10: yield DyeColor.ORANGE;
-			case 11: yield DyeColor.PINK;
-			case 12: yield DyeColor.PURPLE;
-			case 13: yield DyeColor.RED;
-			case 14: yield DyeColor.WHITE;
-			case 15: yield DyeColor.YELLOW;
-			default: yield null;
-			};
+			dyes[i] = values[rng.nextInt(values.length)];
 		}
 		return dyes;
 	}
