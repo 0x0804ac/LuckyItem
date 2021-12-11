@@ -1,8 +1,8 @@
 name: LuckyItem
-version: "4.1"
+version: "4.2"
 main: com.nokhoon.luckyitem.PluginMain
 description: Feeling lucky?
-api-version: 1.17
+api-version: 1.18
 author: "0x0804ac"
 commands:
   crate:

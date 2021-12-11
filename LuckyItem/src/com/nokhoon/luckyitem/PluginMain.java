@@ -218,7 +218,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 					if(player.isAfk() || player.getGameMode() == GameMode.SPECTATOR) continue;
 					PlayerInventory inventory = player.getInventory();
 					ItemStack item = CrateChestData.getRandomChest(System.currentTimeMillis() ^
-							((long) player.getName().hashCode() + (long) player.getEntityId()));
+							((long) player.getName().hashCode() * (long) (player.getEntityId() + 1)));
 					if(inventory.firstEmpty() == -1) player.getWorld().dropItem(player.getLocation(), item);
 					else inventory.addItem(item);
 					player.updateInventory();
