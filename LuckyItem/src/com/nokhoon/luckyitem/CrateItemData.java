@@ -947,8 +947,8 @@ public class CrateItemData {
 		ptr.put(Material.LARGE_AMETHYST_BUD, Rarity.EPIC);
 		ptr.put(Material.AMETHYST_CLUSTER, Rarity.EPIC);
 		ptr.put(Material.AMETHYST_BLOCK, Rarity.EPIC); //end of Amethyst
-		ptr.put(Material.AZALEA, Rarity.RARE);
-		ptr.put(Material.FLOWERING_AZALEA, Rarity.RARE); //end of Azalea
+		ptr.put(Material.AZALEA, Rarity.UNCOMMON);
+		ptr.put(Material.FLOWERING_AZALEA, Rarity.UNCOMMON); //end of Azalea
 		ptr.put(Material.SMALL_DRIPLEAF, Rarity.RARE);
 		ptr.put(Material.BIG_DRIPLEAF, Rarity.RARE); //end of Dripleaf
 		ptr.put(Material.DRIPSTONE_BLOCK, Rarity.UNCOMMON);
