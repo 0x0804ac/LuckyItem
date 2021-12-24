@@ -1,5 +1,7 @@
 package com.nokhoon.luckyitem;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.bukkit.GameMode;
@@ -34,6 +36,11 @@ public class PluginMain extends JavaPlugin implements Listener {
 		}
 		return false;
 	};
+	private List<String> CRATE_IDS = new java.util.ArrayList<String>();
+	
+	{
+		for(Crate crate : Crate.values()) CRATE_IDS.add(crate.getName());
+	}
 	
 	@Override
 	public void onEnable() {
@@ -53,7 +60,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		Audience audience = (Audience) sender;
 		switch(label.toLowerCase()) {
-		case "crate":
+		case "crate" -> {
 			if(args.length < 1 || args.length > 2) audience.sendMessage(CRATE_COMMAND_HELP);
 			else {
 				Crate crate = null;
@@ -95,8 +102,8 @@ public class PluginMain extends JavaPlugin implements Listener {
 					else audience.sendMessage(PluginConstants.NO_PERMISSION);
 				} //상자 정보
 			}
-			return true;
-		case "rarity":
+		}
+		case "rarity" -> {
 			if(args.length == 2) {
 				Crate pool = null;
 				Material target = null;
@@ -122,8 +129,8 @@ public class PluginMain extends JavaPlugin implements Listener {
 				}
 			}
 			else audience.sendMessage(PluginConstants.error("사용법: /rarity (상자 이름/ID) (아이템)"));
-			return true;
-		case "supply":
+		}
+		case "supply" -> {
 			if(args.length > 1) audience.sendMessage(PluginConstants.error("사용법: /supply [초]"));
 			else if(args.length == 1) {
 				if(sender.isOp()) {
@@ -144,8 +151,31 @@ public class PluginMain extends JavaPlugin implements Listener {
 				if(seconds > 0) audience.sendMessage(PluginConstants.info("보급품 지급 주기가 " + seconds + "초로 설정되어 있습니다."));
 				else sender.sendMessage("보급품 지급이 비활성화되어 있습니다.");
 			}
-			return true;
-		default: return false;
+		}
+		default -> { return false; }
+		}
+		return true;
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		switch(command.getLabel()) {
+		case "crate" -> {
+			if(args.length == 1) {
+				return CRATE_IDS.stream().filter(id -> id.startsWith(args[0].toLowerCase())).toList();
+			}
+			else return Collections.emptyList();
+		}
+		case "rarity" -> {
+			if(args.length == 1) {
+				return CRATE_IDS.stream().filter(id -> id.startsWith(args[0].toLowerCase())).toList();
+			}
+			else return Collections.emptyList();
+		}
+		case "supply" -> {
+			return Collections.emptyList();
+		}
+		default -> { return super.onTabComplete(sender, command, alias, args); }
 		}
 	}
 	
