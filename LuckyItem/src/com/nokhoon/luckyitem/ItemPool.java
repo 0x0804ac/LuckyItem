@@ -31,19 +31,20 @@ public class ItemPool extends HashMap<Material, Rarity> {
 	
 	static {
 		SUSPICIOUS_STEW_EFFECTS = new PotionEffect[] {
-				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 80, 0), 
-				new PotionEffect(PotionEffectType.BLINDNESS, 160, 0), 
+				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 60, 0), 
+				new PotionEffect(PotionEffectType.BLINDNESS, 220, 0), 
 				new PotionEffect(PotionEffectType.SATURATION, 7, 0), 
-				new PotionEffect(PotionEffectType.JUMP, 120, 0), 
-				new PotionEffect(PotionEffectType.POISON, 240, 0), 
-				new PotionEffect(PotionEffectType.REGENERATION, 160, 0), 
+				new PotionEffect(PotionEffectType.NAUSEA, 140, 0), 
+				new PotionEffect(PotionEffectType.JUMP_BOOST, 100, 0), 
+				new PotionEffect(PotionEffectType.POISON, 220, 0), 
+				new PotionEffect(PotionEffectType.REGENERATION, 140, 0), 
 				new PotionEffect(PotionEffectType.NIGHT_VISION, 100, 0), 
-				new PotionEffect(PotionEffectType.WEAKNESS, 180, 0), 
-				new PotionEffect(PotionEffectType.WITHER, 160, 0), 
-				new PotionEffect(PotionEffectType.JUMP, 160, 0), 
 				new PotionEffect(PotionEffectType.WEAKNESS, 140, 0), 
+				new PotionEffect(PotionEffectType.WITHER, 140, 0), 
+				new PotionEffect(PotionEffectType.JUMP_BOOST, 160, 0), 
 				new PotionEffect(PotionEffectType.BLINDNESS, 120, 0), 
-				new PotionEffect(PotionEffectType.POISON, 280, 0)
+				new PotionEffect(PotionEffectType.POISON, 280, 0), 
+				new PotionEffect(PotionEffectType.NIGHT_VISION, 160, 0)
 		};
 	}
 	
