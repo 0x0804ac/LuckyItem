@@ -5,11 +5,12 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 
 public enum Rarity {
-	COMMON(15, Component.text("[일반] ").color(NamedTextColor.WHITE)),
-	UNCOMMON(10, Component.text("[고급] ", NamedTextColor.GREEN)),
-	RARE(6, Component.text("[희귀] ", NamedTextColor.BLUE)),
-	EPIC(3, Component.text("[영웅] ", NamedTextColor.DARK_PURPLE)),
-	LEGENDARY(1, Component.text("[전설] ", NamedTextColor.GOLD));
+	COMMON(32, Component.text("[일반] ").color(NamedTextColor.WHITE)),
+	UNCOMMON(16, Component.text("[고급] ", NamedTextColor.GREEN)),
+	RARE(8, Component.text("[희귀] ", NamedTextColor.BLUE)),
+	EPIC(4, Component.text("[영웅] ", NamedTextColor.DARK_PURPLE)),
+	LEGENDARY(2, Component.text("[전설] ", NamedTextColor.GOLD)),
+	MYSTIC(1, Component.text("[신화] ", NamedTextColor.AQUA));
 	
 	private final int weight;
 	private final TextComponent prefix;

@@ -25,20 +25,20 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
 public class PluginMain extends JavaPlugin implements Listener {
-	private final ItemStack[] CRATE_CHEST = CrateChestData.getCrateChests();
-	private final ItemPool[] CRATE_TABLE = CrateItemData.getCrateData();
+	private static final ItemStack[] CRATE_CHEST = CrateChestData.getCrateChests();
+	private static final ItemPool[] CRATE_TABLE = CrateItemData.getCrateData();
 	private BukkitTask supplyTask = null;
 	
-	private final Component CRATE_COMMAND_HELP = PluginConstants.error("사용법: /crate (이름/ID) [개수]");
+	private static final Component CRATE_COMMAND_HELP = PluginConstants.error("사용법: /crate (이름/ID) [개수]");
 	private Predicate<ItemStack> isCrateItem = item -> {
 		for(ItemStack crate : CRATE_CHEST) {
 			if(item.isSimilar(crate)) return true;
 		}
 		return false;
 	};
-	private List<String> CRATE_IDS = new java.util.ArrayList<String>();
+	private static final List<String> CRATE_IDS = new java.util.ArrayList<String>();
 	
-	{
+	static {
 		for(Crate crate : Crate.values()) CRATE_IDS.add(crate.getName());
 	}
 	
@@ -95,7 +95,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 				} //상자 획득
 				else {
 					if(args.length == 1) {
-						audience.sendMessage(CRATE_CHEST[id].getItemMeta().displayName());
+						audience.sendMessage(CRATE_CHEST[id].getItemMeta().customName());
 						audience.sendMessage(Component.text(crate.getName(), NamedTextColor.YELLOW)
 								.append(Component.text(" (ID: " + crate.getID() + ")", NamedTextColor.GRAY)));
 					}
@@ -207,22 +207,22 @@ public class PluginMain extends JavaPlugin implements Listener {
 		Rarity rarity = table.get(result.getType());
 		getServer().getScheduler().runTask(this, new Runnable() {
 			public void run() {
-				Component name = selectedItem.getItemMeta().displayName();
+				Component name = selectedItem.getItemMeta().customName();
 				selectedItem.subtract();
 				inventory.addItem(result);
 				switch(rarity) {
-				case COMMON, UNCOMMON, RARE -> {
+				case COMMON, UNCOMMON, RARE, EPIC -> {
 					audience.sendMessage(openMessage(name, result, rarity)
 							.append(Component.text("개를 획득했습니다.", NamedTextColor.WHITE)));
 					player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
 				}
-				case EPIC -> {
-					((Audience) getServer()).sendMessage(broadcastMessage(player)
-							.append(openMessage(name, result, rarity))
-							.append(Component.text("개를 획득했습니다.", NamedTextColor.WHITE)));
-					player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
-				}
 				case LEGENDARY -> {
+					((Audience) getServer()).sendMessage(broadcastMessage(player)
+							.append(openMessage(name, result, rarity)
+							.append(Component.text("개를 획득했습니다!", NamedTextColor.WHITE))));
+					player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
+				}
+				case MYSTIC -> {
 					((Audience) getServer()).sendMessage(broadcastMessage(player)
 							.append(openMessage(name, result, rarity)
 							.append(Component.text("개를 획득했습니다!", NamedTextColor.WHITE))));
@@ -248,7 +248,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 					if(player.isAfk() || player.getGameMode() == GameMode.SPECTATOR) continue;
 					PlayerInventory inventory = player.getInventory();
 					ItemStack item = CrateChestData.getRandomChest(System.currentTimeMillis() ^
-							((long) player.getName().hashCode() * (long) (player.getEntityId() + 1)));
+							player.getUniqueId().getMostSignificantBits() ^ (1L + player.getEntityId()));
 					if(inventory.firstEmpty() == -1) player.getWorld().dropItem(player.getLocation(), item);
 					else inventory.addItem(item);
 					player.updateInventory();

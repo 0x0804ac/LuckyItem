@@ -3,6 +3,7 @@ package com.nokhoon.luckyitem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 import org.bukkit.Color;
@@ -10,41 +11,63 @@ import org.bukkit.DyeColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.Tag;
+import org.bukkit.block.DecoratedPot;
+import org.bukkit.block.DecoratedPot.Side;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ArmorMeta;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.OminousBottleMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.ShieldMeta;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
-import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionEffect;
+import org.bukkit.inventory.meta.trim.ArmorTrim;
+import org.bukkit.inventory.meta.trim.TrimMaterial;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
+import io.papermc.paper.potion.SuspiciousEffectEntry;
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
+
 public class ItemPool extends HashMap<Material, Rarity> {
 	private static final long serialVersionUID = 0x0804ac0804acL;
-	private static final PotionEffect[] SUSPICIOUS_STEW_EFFECTS;
+	private static final ArrayList<Enchantment> TREASURE_ENCHANTMENTS = new ArrayList<Enchantment>(8);
+	private static final SuspiciousEffectEntry[] SUSPICIOUS_STEW_EFFECTS;
+	
 	private Random rng;
+	private int total = Integer.MIN_VALUE;
 	
 	static {
-		SUSPICIOUS_STEW_EFFECTS = new PotionEffect[] {
-				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 60, 0), 
-				new PotionEffect(PotionEffectType.BLINDNESS, 220, 0), 
-				new PotionEffect(PotionEffectType.SATURATION, 7, 0), 
-				new PotionEffect(PotionEffectType.NAUSEA, 140, 0), 
-				new PotionEffect(PotionEffectType.JUMP_BOOST, 100, 0), 
-				new PotionEffect(PotionEffectType.POISON, 220, 0), 
-				new PotionEffect(PotionEffectType.REGENERATION, 140, 0), 
-				new PotionEffect(PotionEffectType.NIGHT_VISION, 100, 0), 
-				new PotionEffect(PotionEffectType.WEAKNESS, 140, 0), 
-				new PotionEffect(PotionEffectType.WITHER, 140, 0), 
-				new PotionEffect(PotionEffectType.JUMP_BOOST, 160, 0), 
-				new PotionEffect(PotionEffectType.BLINDNESS, 120, 0), 
-				new PotionEffect(PotionEffectType.POISON, 280, 0), 
-				new PotionEffect(PotionEffectType.NIGHT_VISION, 160, 0)
+		TREASURE_ENCHANTMENTS.add(Enchantment.BINDING_CURSE);
+		TREASURE_ENCHANTMENTS.add(Enchantment.FROST_WALKER);
+		TREASURE_ENCHANTMENTS.add(Enchantment.MENDING);
+		TREASURE_ENCHANTMENTS.add(Enchantment.SOUL_SPEED);
+		TREASURE_ENCHANTMENTS.add(Enchantment.SWIFT_SNEAK);
+		TREASURE_ENCHANTMENTS.add(Enchantment.VANISHING_CURSE);
+		TREASURE_ENCHANTMENTS.add(Enchantment.WIND_BURST);
+		
+		SUSPICIOUS_STEW_EFFECTS = new SuspiciousEffectEntry[] {
+				SuspiciousEffectEntry.create(PotionEffectType.FIRE_RESISTANCE, 60), 
+				SuspiciousEffectEntry.create(PotionEffectType.BLINDNESS, 220), 
+				SuspiciousEffectEntry.create(PotionEffectType.SATURATION, 7), 
+				SuspiciousEffectEntry.create(PotionEffectType.NAUSEA, 140), 
+				SuspiciousEffectEntry.create(PotionEffectType.JUMP_BOOST, 100), 
+				SuspiciousEffectEntry.create(PotionEffectType.POISON, 220), 
+				SuspiciousEffectEntry.create(PotionEffectType.REGENERATION, 140), 
+				SuspiciousEffectEntry.create(PotionEffectType.NIGHT_VISION, 100), 
+				SuspiciousEffectEntry.create(PotionEffectType.WEAKNESS, 140), 
+				SuspiciousEffectEntry.create(PotionEffectType.WITHER, 140), 
+				SuspiciousEffectEntry.create(PotionEffectType.JUMP_BOOST, 160), 
+				SuspiciousEffectEntry.create(PotionEffectType.BLINDNESS, 120), 
+				SuspiciousEffectEntry.create(PotionEffectType.POISON, 280)
 		};
 	}
 	
@@ -54,9 +77,11 @@ public class ItemPool extends HashMap<Material, Rarity> {
 	}
 	
 	public int getTotalTier() {
+		if(total > 0) return total;
 		int sum = 0;
 		for(Rarity r : values()) sum += r.getWeight();
-		return sum;
+		total = sum;
+		return total;
 	}
 	
 	public ItemStack getRandomItem() {
@@ -71,10 +96,22 @@ public class ItemPool extends HashMap<Material, Rarity> {
 			if(randomNumber < check) {
 				//종류와 수량
 				result = new ItemStack(key);
-				int extra = rng.nextInt(value.getWeight() + 1);
+				int extra = rng.nextInt(value.getWeight());
 				result.add(extra);
 				
 				ItemMeta meta = result.getItemMeta();
+				//도자기 조각
+				if(meta instanceof BlockStateMeta && key.equals(Material.DECORATED_POT) && rng.nextInt(2) == 0) {
+					BlockStateMeta pot = (BlockStateMeta) meta;
+					DecoratedPot state = (DecoratedPot) pot.getBlockState();
+					state.setSherd(Side.FRONT, randomSherd(rng));
+					state.setSherd(Side.BACK, randomSherd(rng));
+					state.setSherd(Side.LEFT, randomSherd(rng));
+					state.setSherd(Side.RIGHT, randomSherd(rng));
+					pot.setBlockState(state);
+					result.setItemMeta(pot);
+					meta = result.getItemMeta();
+				}
 				//내구도
 				if(meta instanceof Damageable) {
 					Damageable d = (Damageable) meta;
@@ -86,14 +123,19 @@ public class ItemPool extends HashMap<Material, Rarity> {
 					}
 				}
 				//인챈트
-				ArrayList<Enchantment> candidates = new ArrayList<Enchantment>(6);
-				for(Enchantment ench : Enchantment.values()) if(ench.canEnchantItem(result)) candidates.add(ench);
+				ArrayList<Enchantment> candidates = new ArrayList<Enchantment>();
+				Iterator<Enchantment> iterator = RegistryAccess.registryAccess().getRegistry(RegistryKey.ENCHANTMENT).iterator();
+				while(iterator.hasNext()) {
+					Enchantment ench = iterator.next();
+					if(ench.canEnchantItem(result)) candidates.add(ench);
+				}
 				int size = candidates.size();
 				if(size > 0) {
 					var applied = new HashMap<Enchantment, Integer>(size * 2);
 					boolean conflict = false;
 					Collections.shuffle(candidates, rng);
 					for(int i = rng.nextInt(size * 2); i < size; i++) {
+						conflict = false;
 						Enchantment ench = candidates.get(rng.nextInt(size));
 						for(Enchantment e : applied.keySet()) {
 							if(e.conflictsWith(ench)) {
@@ -101,7 +143,8 @@ public class ItemPool extends HashMap<Material, Rarity> {
 								break;
 							}
 						}
-						if(!conflict && (!ench.isTreasure() || rng.nextInt(10) == 0)) applied.put(ench, 1 + rng.nextInt(ench.getMaxLevel()));
+						if(conflict || (TREASURE_ENCHANTMENTS.contains(ench) && rng.nextInt(16) != 0)) continue;
+						applied.put(ench, rng.nextInt(1, ench.getMaxLevel() + 1));
 					}
 					result.addEnchantments(applied);
 				}
@@ -114,7 +157,7 @@ public class ItemPool extends HashMap<Material, Rarity> {
 					case 8 -> {
 						ItemStack arrow = new ItemStack(Material.TIPPED_ARROW);
 						PotionMeta arrowMeta = (PotionMeta) (arrow.getItemMeta());
-						arrowMeta.setBasePotionData(randomPotionData(rng));
+						arrowMeta.setBasePotionType(randomPotionType(rng));
 						arrow.setItemMeta(arrowMeta);
 						crossbow.addChargedProjectile(arrow);
 					}
@@ -133,24 +176,24 @@ public class ItemPool extends HashMap<Material, Rarity> {
 				//물약
 				else if(meta instanceof PotionMeta) {
 					PotionMeta potion = (PotionMeta) meta;
-					potion.setBasePotionData(randomPotionData(rng));
+					potion.setBasePotionType(randomPotionType(rng));
 					result.setItemMeta(potion);
 				}
 				//폭죽
 				else if(meta instanceof FireworkMeta) {
 					FireworkMeta firework = (FireworkMeta) meta;
 					for(int i = rng.nextInt(5); i < 3; i++) firework.addEffect(randomFireworkEffect(rng));
-					firework.setPower(rng.nextInt(3) + 1);
+					firework.setPower(rng.nextInt(1, 4));
 					result.setItemMeta(firework);
 				}
 				//수상한 스튜
 				else if(meta instanceof SuspiciousStewMeta) {
 					SuspiciousStewMeta stew = (SuspiciousStewMeta) meta;
-					PotionEffect effect = SUSPICIOUS_STEW_EFFECTS[rng.nextInt(SUSPICIOUS_STEW_EFFECTS.length)];
+					SuspiciousEffectEntry effect = SUSPICIOUS_STEW_EFFECTS[rng.nextInt(SUSPICIOUS_STEW_EFFECTS.length)];
 					stew.addCustomEffect(effect, true);
 					result.setItemMeta(stew);
 				}
-				//가죽 갑옷
+				//가죽 갑옷 염색
 				else if(meta instanceof LeatherArmorMeta && rng.nextInt(2) == 0) {
 					LeatherArmorMeta armor = (LeatherArmorMeta) meta;
 					DyeColor[] dyes = randomDyes(rng);
@@ -164,6 +207,28 @@ public class ItemPool extends HashMap<Material, Rarity> {
 					armor.setColor(primary);
 					result.setItemMeta(armor);
 				}
+				meta = result.getItemMeta();
+				//갑옷 형판
+				if(meta instanceof ArmorMeta && rng.nextInt(4) == 0) {
+					ArmorMeta armor = (ArmorMeta) meta;
+					armor.setTrim(randomArmorTrim(rng));
+					result.setItemMeta(armor);
+					meta = result.getItemMeta();
+				}
+				//흉조 물약
+				else if(meta instanceof OminousBottleMeta) {
+					OminousBottleMeta bottle = (OminousBottleMeta) meta;
+					bottle.setAmplifier(rng.nextInt(5));
+					result.setItemMeta(bottle);
+					meta = result.getItemMeta();
+				}
+				//방패
+				else if(meta instanceof ShieldMeta && rng.nextInt(2) == 0) {
+					ShieldMeta shield = (ShieldMeta) meta;
+					shield.setBaseColor(DyeColor.values()[rng.nextInt(DyeColor.values().length)]);
+					result.setItemMeta(shield);
+					meta = result.getItemMeta();
+				}
 				return result;
 			}
 		}
@@ -174,17 +239,10 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		rng.setSeed(System.currentTimeMillis() ^ 0x0804acL);
 	}
 	
-	private static PotionData randomPotionData(Random rng) {
+	private static PotionType randomPotionType(Random rng) {
 		PotionType[] types = PotionType.values();
 		PotionType type = types[rng.nextInt(types.length)];
-		boolean isLong = false;
-		boolean isStrong = false;
-		switch(rng.nextInt(6)) {
-		case 2, 3 -> isStrong = type.isUpgradeable();
-		case 4, 5 -> isLong = type.isExtendable();
-		}
-		PotionData potion = new PotionData(type, isLong, isStrong);
-		return potion;
+		return rng.nextInt(2) == 0 ? PotionType.WATER : type;
 	}
 	
 	private static FireworkEffect randomFireworkEffect(Random rng) {
@@ -199,7 +257,7 @@ public class ItemPool extends HashMap<Material, Rarity> {
 	
 	private static DyeColor[] randomDyes(Random rng) {
 		DyeColor[] values = DyeColor.values();
-		DyeColor[] dyes = new DyeColor[1 + rng.nextInt(3)];
+		DyeColor[] dyes = new DyeColor[rng.nextInt(1, 4)];
 		for(int i = 0; i < dyes.length; i++) {
 			dyes[i] = values[rng.nextInt(values.length)];
 		}
@@ -210,5 +268,28 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		Color[] colors = new Color[dyes.length];
 		for(int i = 0; i < colors.length; i++) colors[i] = dyes[i].getFireworkColor();
 		return colors;
+	}
+	
+	private static ArmorTrim randomArmorTrim(Random rng) {
+		TrimMaterial material = null;
+		TrimPattern pattern = null;
+		int index = rng.nextInt(RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_MATERIAL).size());
+		Iterator<TrimMaterial> materialIterator = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_MATERIAL).iterator();
+		int i;
+		for(i = 0; i < index; i++) materialIterator.next();
+		material = materialIterator.next();
+		index = rng.nextInt(RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).size());
+		Iterator<TrimPattern> patternIterator = RegistryAccess.registryAccess().getRegistry(RegistryKey.TRIM_PATTERN).iterator();
+		for(i = 0; i < index; i++) patternIterator.next();
+		pattern = patternIterator.next();
+		return new ArmorTrim(material, pattern);
+	}
+	
+	private static Material randomSherd(Random rng) {
+		if(rng.nextInt(2) == 0) return Material.BRICK;
+		int index = rng.nextInt(Tag.ITEMS_DECORATED_POT_SHERDS.getValues().size());
+		Iterator<Material> iterator = Tag.ITEMS_DECORATED_POT_SHERDS.getValues().iterator();
+		for(int i = 0; i < index; i++) iterator.next();
+		return iterator.next();
 	}
 }

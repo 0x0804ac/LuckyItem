@@ -17,14 +17,15 @@ public class CrateChestData {
 	private static final List<Component> CHEST_LORE;
 	
 	static {
-		CHEST_LORE = Arrays.asList(Component.text("상자를 열려면 아이템을 들고 사용하세요.").color(NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
-				Component.text("인벤토리가 가득 차면 사용할 수 없습니다!", NamedTextColor.RED).decoration(TextDecoration.ITALIC, false));
+		CHEST_LORE = Arrays.asList(Component.text("상자를 열려면 아이템을 손에 들고").color(NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false),
+				Component.text("사용하세요. ", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false).
+				append(Component.keybind("key.use", NamedTextColor.LIGHT_PURPLE).decoration(TextDecoration.ITALIC, true)));
 		ItemMeta ptr;
 		CHEST_ITEMSTACKS = new ItemStack[Crate.TYPES_OF_CRATES];
 		for(int i = 0; i < CHEST_ITEMSTACKS.length; i++) {
 			CHEST_ITEMSTACKS[i] = new ItemStack(Material.CHEST);
 			ptr = CHEST_ITEMSTACKS[i].getItemMeta();
-			ptr.displayName(crateName(Crate.getByID(i)));
+			ptr.itemName(crateName(Crate.getByID(i)));
 			ptr.lore(CHEST_LORE);
 			CHEST_ITEMSTACKS[i].setItemMeta(ptr);
 		}
