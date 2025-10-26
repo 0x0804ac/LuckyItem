@@ -95,7 +95,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 				} //상자 획득
 				else {
 					if(args.length == 1) {
-						audience.sendMessage(CRATE_CHEST[id].getItemMeta().customName());
+						audience.sendMessage(CRATE_CHEST[id].getItemMeta().itemName());
 						audience.sendMessage(Component.text(crate.getName(), NamedTextColor.YELLOW)
 								.append(Component.text(" (ID: " + crate.getID() + ")", NamedTextColor.GRAY)));
 					}
@@ -207,7 +207,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 		Rarity rarity = table.get(result.getType());
 		getServer().getScheduler().runTask(this, new Runnable() {
 			public void run() {
-				Component name = selectedItem.getItemMeta().customName();
+				Component name = selectedItem.getItemMeta().itemName();
 				selectedItem.subtract();
 				inventory.addItem(result);
 				switch(rarity) {
