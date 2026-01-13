@@ -683,7 +683,14 @@ public class CrateItemData {
 		ptr.put(Material.FLINT_AND_STEEL, Rarity.RARE);
 		ptr.put(Material.END_CRYSTAL, Rarity.LEGENDARY);
 		ptr.put(Material.FIREWORK_ROCKET, Rarity.EPIC);
-		ptr.put(Material.ELYTRA, Rarity.MYSTIC);
+		ptr.put(Material.ELYTRA, Rarity.MYSTIC); //
+		ptr.put(Material.WOODEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.GOLDEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.STONE_SPEAR, Rarity.UNCOMMON);
+		ptr.put(Material.COPPER_SPEAR, Rarity.RARE);
+		ptr.put(Material.IRON_SPEAR, Rarity.EPIC);
+		ptr.put(Material.DIAMOND_SPEAR, Rarity.LEGENDARY);
+		ptr.put(Material.NETHERITE_SPEAR, Rarity.MYSTIC); //end of Spear
 		//end of COMBAT
 		ptr = CRATE_DATA[Crate.COPPER.getID()];
 		ptr.put(Material.COPPER_ORE, Rarity.EPIC);
@@ -809,6 +816,7 @@ public class CrateItemData {
 		ptr.put(Material.COPPER_AXE, Rarity.UNCOMMON);
 		ptr.put(Material.COPPER_SHOVEL, Rarity.UNCOMMON);
 		ptr.put(Material.COPPER_HOE, Rarity.UNCOMMON);
+		ptr.put(Material.COPPER_SPEAR, Rarity.UNCOMMON);
 		//end of COPPER
 		ptr = CRATE_DATA[Crate.FOOD.getID()];
 		ptr.put(Material.APPLE, Rarity.UNCOMMON);
@@ -1337,7 +1345,8 @@ public class CrateItemData {
 		ptr.put(Material.NETHERITE_LEGGINGS, Rarity.MYSTIC);
 		ptr.put(Material.NETHERITE_PICKAXE, Rarity.MYSTIC);
 		ptr.put(Material.NETHERITE_SHOVEL, Rarity.MYSTIC);
-		ptr.put(Material.NETHERITE_SWORD, Rarity.MYSTIC); //end of Netherite Stuff
+		ptr.put(Material.NETHERITE_SWORD, Rarity.MYSTIC);
+		ptr.put(Material.NETHERITE_SPEAR, Rarity.MYSTIC); //end of Netherite Stuff
 		ptr.put(Material.CRIMSON_NYLIUM, Rarity.UNCOMMON);
 		ptr.put(Material.WARPED_NYLIUM, Rarity.UNCOMMON); //end of Nylium
 		ptr.put(Material.CRIMSON_FENCE, Rarity.COMMON);
@@ -1743,6 +1752,13 @@ public class CrateItemData {
 		ptr.put(Material.IRON_SWORD, Rarity.EPIC);
 		ptr.put(Material.DIAMOND_SWORD, Rarity.LEGENDARY);
 		ptr.put(Material.NETHERITE_SWORD, Rarity.MYSTIC); //end of Sword
+		ptr.put(Material.WOODEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.GOLDEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.STONE_SPEAR, Rarity.UNCOMMON);
+		ptr.put(Material.COPPER_SPEAR, Rarity.RARE);
+		ptr.put(Material.IRON_SPEAR, Rarity.EPIC);
+		ptr.put(Material.DIAMOND_SPEAR, Rarity.LEGENDARY);
+		ptr.put(Material.NETHERITE_SPEAR, Rarity.MYSTIC); //end of Spear
 		ptr.put(Material.BOW, Rarity.UNCOMMON);
 		ptr.put(Material.CROSSBOW, Rarity.UNCOMMON); //end of Bow
 		ptr.put(Material.ARROW, Rarity.COMMON);
