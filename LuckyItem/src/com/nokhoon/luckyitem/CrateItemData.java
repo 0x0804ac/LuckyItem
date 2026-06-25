@@ -604,6 +604,34 @@ public class CrateItemData {
 		ptr.put(Material.SKELETON_SKULL, Rarity.LEGENDARY);
 		ptr.put(Material.WITHER_SKELETON_SKULL, Rarity.EPIC);
 		ptr.put(Material.ZOMBIE_HEAD, Rarity.LEGENDARY);
+		ptr.put(Material.CINNABAR, Rarity.UNCOMMON); //beginning of 26.2
+		ptr.put(Material.CINNABAR_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_CINNABAR, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_CINNABAR_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_CINNABAR_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_CINNABAR_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_BRICKS, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_BRICK_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_BRICK_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR_BRICK_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.CHISELED_CINNABAR, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_SULFUR, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_SULFUR_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_SULFUR_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.POLISHED_SULFUR_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_BRICKS, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_BRICK_STAIRS, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_BRICK_SLAB, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_BRICK_WALL, Rarity.UNCOMMON);
+		ptr.put(Material.CHISELED_SULFUR, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR_SPIKE, Rarity.UNCOMMON);
+		ptr.put(Material.POTENT_SULFUR, Rarity.RARE); //end of 26.2
 		//end of BLOCK
 		ptr = CRATE_DATA[Crate.BOOTS.getID()];
 		ptr.put(Material.LEATHER_BOOTS, Rarity.COMMON);
@@ -1037,6 +1065,8 @@ public class CrateItemData {
 		ptr.put(Material.RESIN_BLOCK, Rarity.RARE);
 		ptr.put(Material.RESIN_CLUMP, Rarity.RARE);
 		ptr.put(Material.RESIN_BRICK, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR, Rarity.UNCOMMON);
 		//end of MATERIAL
 		ptr = CRATE_DATA[Crate.NATURE.getID()];
 		ptr.put(Material.APPLE, Rarity.UNCOMMON);
@@ -1294,6 +1324,8 @@ public class CrateItemData {
 		ptr.put(Material.CACTUS_FLOWER, Rarity.UNCOMMON);
 		ptr.put(Material.SHORT_DRY_GRASS, Rarity.UNCOMMON);
 		ptr.put(Material.TALL_DRY_GRASS, Rarity.UNCOMMON);
+		ptr.put(Material.CINNABAR, Rarity.UNCOMMON);
+		ptr.put(Material.SULFUR, Rarity.UNCOMMON);
 		//end of NATURE
 		ptr = CRATE_DATA[Crate.NETHER.getID()];
 		ptr.put(Material.ANCIENT_DEBRIS, Rarity.LEGENDARY);
