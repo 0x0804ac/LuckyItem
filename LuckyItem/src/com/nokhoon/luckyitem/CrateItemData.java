@@ -1657,6 +1657,15 @@ public class CrateItemData {
 		ptr.put(Material.DIAMOND_SHOVEL, Rarity.LEGENDARY);
 		ptr.put(Material.NETHERITE_SHOVEL, Rarity.MYSTIC);
 		//end of SHOVEL
+		ptr = CRATE_DATA[Crate.SPEAR.getID()];
+		ptr.put(Material.WOODEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.GOLDEN_SPEAR, Rarity.COMMON);
+		ptr.put(Material.STONE_SPEAR, Rarity.UNCOMMON);
+		ptr.put(Material.COPPER_SPEAR, Rarity.RARE);
+		ptr.put(Material.IRON_SPEAR, Rarity.EPIC);
+		ptr.put(Material.DIAMOND_SPEAR, Rarity.LEGENDARY);
+		ptr.put(Material.NETHERITE_SPEAR, Rarity.MYSTIC);
+		//end of SPEAR
 		ptr = CRATE_DATA[Crate.SWORD.getID()];
 		ptr.put(Material.WOODEN_SWORD, Rarity.COMMON);
 		ptr.put(Material.GOLDEN_SWORD, Rarity.COMMON);

@@ -14,6 +14,8 @@ import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.DecoratedPot;
 import org.bukkit.block.DecoratedPot.Side;
+import org.bukkit.block.banner.Pattern;
+import org.bukkit.block.banner.PatternType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ArmorMeta;
@@ -40,6 +42,7 @@ import io.papermc.paper.registry.RegistryKey;
 public class ItemPool extends HashMap<Material, Rarity> {
 	private static final long serialVersionUID = 0x0804ac0804acL;
 	private static final ArrayList<Enchantment> TREASURE_ENCHANTMENTS = new ArrayList<Enchantment>(8);
+	private static final ArrayList<PatternType> RARE_PATTERNS = new ArrayList<PatternType>(8);
 	private static final SuspiciousEffectEntry[] SUSPICIOUS_STEW_EFFECTS;
 	
 	private Random rng;
@@ -53,6 +56,14 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		TREASURE_ENCHANTMENTS.add(Enchantment.SWIFT_SNEAK);
 		TREASURE_ENCHANTMENTS.add(Enchantment.VANISHING_CURSE);
 		TREASURE_ENCHANTMENTS.add(Enchantment.WIND_BURST);
+		
+		RARE_PATTERNS.add(PatternType.CREEPER);
+		RARE_PATTERNS.add(PatternType.SKULL);
+		RARE_PATTERNS.add(PatternType.MOJANG);
+		RARE_PATTERNS.add(PatternType.GLOBE);
+		RARE_PATTERNS.add(PatternType.PIGLIN);
+		RARE_PATTERNS.add(PatternType.FLOW);
+		RARE_PATTERNS.add(PatternType.GUSTER);
 		
 		SUSPICIOUS_STEW_EFFECTS = new SuspiciousEffectEntry[] {
 				SuspiciousEffectEntry.create(PotionEffectType.FIRE_RESISTANCE, 60), 
@@ -226,6 +237,7 @@ public class ItemPool extends HashMap<Material, Rarity> {
 				else if(meta instanceof ShieldMeta && rng.nextInt(2) == 0) {
 					ShieldMeta shield = (ShieldMeta) meta;
 					shield.setBaseColor(DyeColor.values()[rng.nextInt(DyeColor.values().length)]);
+					if(rng.nextInt(4) == 0) shield.setPatterns(randomBannerPatterns(rng));
 					result.setItemMeta(shield);
 					meta = result.getItemMeta();
 				}
@@ -255,12 +267,14 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		}).withColor(dyesToFireworkColors(randomDyes(rng))).withFade(dyesToFireworkColors(randomDyes(rng))).build();
 	}
 	
+	private static DyeColor randomDye(Random rng) {
+		DyeColor[] colors = DyeColor.values();
+		return colors[rng.nextInt(colors.length)];
+	}
+	
 	private static DyeColor[] randomDyes(Random rng) {
-		DyeColor[] values = DyeColor.values();
 		DyeColor[] dyes = new DyeColor[rng.nextInt(1, 4)];
-		for(int i = 0; i < dyes.length; i++) {
-			dyes[i] = values[rng.nextInt(values.length)];
-		}
+		for(int i = 0; i < dyes.length; i++) dyes[i] = randomDye(rng);
 		return dyes;
 	}
 	
@@ -291,5 +305,24 @@ public class ItemPool extends HashMap<Material, Rarity> {
 		Iterator<Material> iterator = Tag.ITEMS_DECORATED_POT_SHERDS.getValues().iterator();
 		for(int i = 0; i < index; i++) iterator.next();
 		return iterator.next();
+	}
+	
+	private static Pattern randomPattern(Random rng) {
+		var list = RegistryAccess.registryAccess().getRegistry(RegistryKey.BANNER_PATTERN).stream().toList();
+		ArrayList<PatternType> patterns = new ArrayList<PatternType>(list);
+		patterns.removeAll(RARE_PATTERNS);
+		patterns.addAll(list);
+		return new Pattern(randomDye(rng), patterns.get(rng.nextInt(patterns.size())));
+	}
+	
+	private static ArrayList<Pattern> randomBannerPatterns(Random rng) {
+		ArrayList<Pattern> patterns = new ArrayList<Pattern>(6);
+		int value = 0;
+		for(int i = 0; i < 6; i++) {
+			if(value == 0) patterns.add(randomPattern(rng));
+			else break;
+			value = rng.nextInt(4);
+		}
+		return patterns;
 	}
 }

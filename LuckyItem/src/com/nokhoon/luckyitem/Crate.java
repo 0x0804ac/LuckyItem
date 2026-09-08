@@ -20,12 +20,13 @@ public enum Crate {
 	PROJECTILE("projectile", "투사체", 16),
 	REDSTONE("redstone", "레드스톤", 17),
 	SHOVEL("shovel", "삽", 18),
-	SWORD("sword", "칼", 19),
-	TOOL("tool", "도구", 20),
-	TRIM("trim", "장식", 21),
-	WEAPON("weapon", "무기", 22);
+	SPEAR("spear", "창", 19),
+	SWORD("sword", "칼", 20),
+	TOOL("tool", "도구", 21),
+	TRIM("trim", "장식", 22),
+	WEAPON("weapon", "무기", 23);
 	
-	public static final int TYPES_OF_CRATES = 23;
+	public static final int TYPES_OF_CRATES = 24;
 	
 	private final String strID;
 	private final String displayName;
