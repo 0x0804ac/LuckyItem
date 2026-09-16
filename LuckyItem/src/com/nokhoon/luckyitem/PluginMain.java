@@ -37,6 +37,7 @@ public class PluginMain extends JavaPlugin implements Listener {
 		return false;
 	};
 	private static final List<String> CRATE_IDS = new java.util.ArrayList<String>();
+	private static final List<String> EMPTY_LIST = Collections.emptyList();
 	
 	static {
 		for(Crate crate : Crate.values()) CRATE_IDS.add(crate.getName());
@@ -164,16 +165,16 @@ public class PluginMain extends JavaPlugin implements Listener {
 			if(args.length == 1) {
 				return CRATE_IDS.stream().filter(id -> id.startsWith(args[0].toLowerCase())).toList();
 			}
-			else return Collections.emptyList();
+			else return EMPTY_LIST;
 		}
 		case "rarity" -> {
 			if(args.length == 1) {
 				return CRATE_IDS.stream().filter(id -> id.startsWith(args[0].toLowerCase())).toList();
 			}
-			else return Collections.emptyList();
+			else return EMPTY_LIST;
 		}
 		case "supply" -> {
-			return Collections.emptyList();
+			return EMPTY_LIST;
 		}
 		default -> { return super.onTabComplete(sender, command, alias, args); }
 		}
